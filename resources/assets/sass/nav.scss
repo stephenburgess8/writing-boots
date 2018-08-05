@@ -1,0 +1,58 @@
+.boots-header-container {
+    background-color: $color-body;
+    box-shadow: $box-shadow;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 12px;
+}
+
+.boots-header-container::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.boots-logo-container {
+    float: left;
+    font-style: normal;
+}
+
+.boots-header-logotype {
+    color: $black;
+    font-weight: 300;
+}
+
+.boots-logo-link:link,
+.boots-logo-link:visited {
+    color: $black;
+    font-weight: 300;
+}
+
+.boots-logo-link:hover {
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.boots-logo-link:active {
+    color: $dark-blue;
+}
+
+.boots-header-logotype .boots-logo-link:link, {
+    color: $black;
+}
+
+.boots-nav-list {
+    margin-top: 2px;
+    float: right;
+}
+
+.boots-nav-list-item {
+    float: left;
+    list-style: none;
+    margin-right: 8px;
+}
+
+.boots-nav-list-item::last-child {
+    margin-right: 0;
+}

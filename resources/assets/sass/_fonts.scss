@@ -1,0 +1,40 @@
+// Fonts
+@font-face {
+    font-family: 'nexa';
+    src: url('../fonts/nexa-black-webfont.woff2') format('woff2'),
+         url('../fonts/nexa-black-webfont.woff') format('woff');
+    font-weight: 900;
+    font-style: black;
+}
+
+@font-face {
+    font-family: 'nexa';
+    src: url('../fonts/nexa-bold-webfont.woff2') format('woff2'),
+         url('../fonts/nexa-bold-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: 'nexa';
+    src: url('../fonts/nexa-book-webfont.woff2') format('woff2'),
+         url('../fonts/nexa-book-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'nexa';
+    src: url('../fonts/nexa-bookitalic-webfont.woff2') format('woff2'),
+         url('../fonts/nexa-bookitalic-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'nexa';
+    src: url('../fonts/nexa-light-webfont.woff2') format('woff2'),
+         url('../fonts/nexa-light-webfont.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
