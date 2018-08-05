@@ -61,6 +61,12 @@
                     <td class="wb-table-results-cell">{{ $averageParagraphLength }}</td>
                 </tr>
                 @endisset
+                @isset($syllables)
+                <tr>
+                    <td class="wb-table-results-cell">Syllables</td>
+                    <td class="wb-table-results-cell">{{ $syllables }}</td>
+                </tr>
+                @endisset
             </tbody>
         </table>
         @isset($frequencies)

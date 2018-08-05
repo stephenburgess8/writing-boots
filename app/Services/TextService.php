@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Syllable;
+
 class TextService
 {
     private $text;
@@ -53,8 +55,14 @@ class TextService
         $paragraphCount = sizeof($paragraphs);
         $averageParagraphLength = $this->getAverageParagraphLength($paragraphs);
 
+        $syllableResults = $this->countSyllables($this->text);
+        $syllableWords = $syllableResults['words'];
+        $syllables = $syllableResults['syllables'];
+
         return array(
+            "words" => $words,
             "wordCount" => $wordCount,
+            "syllables" => $syllables,
             "sentenceCount" => $sentenceCount,
             "paragraphCount" => $paragraphCount,
             "averageWordLength" => sprintf('%0.2f', $averageWordLength),
@@ -95,8 +103,12 @@ class TextService
     }
 
     private function getWords($textString) {
-        $cleanedText = str_replace(['\'', "\"", ';', ':', ',', '.', '?', '¿', '\\', '-', '!'], ' ', $textString);
-        return explode(' ', rtrim($cleanedText));
+        $cleanedText = str_replace(["\"", ';', ':', ',', '.', '?', '¿', '!', "#", "…"], '', $textString);
+        $cleanedText = str_replace([" ", " –", " –", " -", "- ", " '", "' ", "\0", "\x0B", "\t", "\r", "\n", "\v", "\f", "\x0c", "\\", "—"], " ", $cleanedText);
+        $filteredWords = array_filter(explode(' ', trim($cleanedText)), function($elem) {
+            return $elem != "";
+        });
+        return $filteredWords;
     }
 
     private function getAverageWordLength($words) {
@@ -161,7 +173,16 @@ class TextService
         return $paragraphCount > 0 ? $totalSentences / $paragraphCount : 0;
     }
 
-    // public function getFrequentWords($number = 10) {
+    public function countSyllables($text) {
+        $syllable = new Syllable('en-us');
+        $syllable->getSource()->setPath(dirname($_SERVER['DOCUMENT_ROOT']) . '/resources/lang/syllables');
+        $syllable->getCache()->setPath(dirname($_SERVER['DOCUMENT_ROOT']) . '/storage/framework/cache');
+        $words = $syllable->countWordsText($text);
+        $syllables = $syllable->countSyllablesText($text);
 
-    // }
+        return [
+            'words' => $words,
+            'syllables' => $syllables
+        ];
+    }
 }
