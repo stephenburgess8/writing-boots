@@ -26,9 +26,20 @@
     clear: both;
 }
 
+.wb-table-wrapper {
+    float: left;
+    margin-right: 16px;
+}
+
 .wb-table-results {
     font-size: 1.2em;
     margin-bottom: 8px;
+}
+
+.wb-table-results::after {
+    content: "";
+    display: block;
+    clear: both;
 }
 
 .wb-table-results-cell {

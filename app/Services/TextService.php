@@ -25,18 +25,6 @@ class TextService
         $this->words = [];
     }
 
-    public function gettitle() {
-        return $this->title;
-    }
-
-    public function settitle($title) {
-        $this->title = $title;
-    }
-
-    public function getCharacterCount() {
-        return strlen($this->text);
-    }
-
     public function getWhiteSpaceCount() {
         return substr_count($this->text, ' ');
     }
@@ -45,7 +33,9 @@ class TextService
         $words = $this->getWords($this->text);
         $this->setWords($words);
         $wordCount = sizeof($words);
-        $averageWordLength = $this->getAverageWordLength($words);
+        $wordLength = $this->getAverageWordLength($words);
+        $averageWordLength = $wordLength['averageWordLength'];
+        $characterCount = $wordLength['characterCount'];
 
         $sentences = $this->getSentences($this->text);
         $sentenceCount = sizeof($sentences);
@@ -56,18 +46,39 @@ class TextService
         $averageParagraphLength = $this->getAverageParagraphLength($paragraphs);
 
         $syllableResults = $this->countSyllables($this->text);
-        $syllableWords = $syllableResults['words'];
-        $syllables = $syllableResults['syllables'];
+        $syllableCount = $syllableResults['syllables'];
+        $polysyllables = $syllableResults['polysyllables'];
+
+        $gunningIndex = $this->getGunningIndex($averageSentenceLength, $polysyllables, $wordCount);
+        $fleschScore = $this->getFleschScore($wordCount, $sentenceCount, $syllableCount);
+        $fleschKincaidGrade = $this->getFleschKincaid($wordCount, $sentenceCount, $syllableCount);
+        $smogLevel = $this->getSmog($polysyllables, $sentenceCount);
+        $colemanLiau = $this->getColemanLiau($characterCount, $sentenceCount, $wordCount);
+        $ari = $this->getAri($characterCount, $wordCount, $sentenceCount);
+        if ($smogLevel) {
+            $averageGrade = ($gunningIndex + $fleschScore['grade'] + $fleschKincaidGrade + $smogLevel + $colemanLiau + $ari) / 6;
+        }
+        else {
+            $averageGrade = ($gunningIndex + $fleschScore['grade'] + $fleschKincaidGrade + $colemanLiau + $ari) / 5;
+        }
 
         return array(
             "words" => $words,
             "wordCount" => $wordCount,
-            "syllables" => $syllables,
+            "syllables" => $syllableCount,
             "sentenceCount" => $sentenceCount,
             "paragraphCount" => $paragraphCount,
             "averageWordLength" => sprintf('%0.2f', $averageWordLength),
             "averageSentenceLength" => sprintf('%0.2f', $averageSentenceLength),
-            "averageParagraphLength" => sprintf('%0.2f', $averageParagraphLength)
+            "averageParagraphLength" => sprintf('%0.2f', $averageParagraphLength),
+            "gunningIndex" => sprintf('%0.1f', $gunningIndex),
+            "fleschScore" => sprintf('%0.1f', $fleschScore['score']),
+            "fleschGrade" => $fleschScore['grade'],
+            "fleschKincaidGrade" => sprintf('%0.1f', $fleschKincaidGrade),
+            "smogLevel" => sprintf('%0.1f', $smogLevel),
+            "colemanLiauGrade" => sprintf('%0.1f', $colemanLiau),
+            "ari" => sprintf('%0.1f', $ari),
+            "averageGrade" => sprintf('%0.1f', $averageGrade)
         );
     }
 
@@ -115,7 +126,7 @@ class TextService
         $wordCount = 0;
         $totalCharacters = 0;
         foreach ($words as $word) {
-            $word = rtrim($word, ' ,.\t\n\r!?;:)-/\'¿');
+            $word = rtrim($word, ' ,.\t\n\r!?#…;—:–)-/\'¿');
             $word = ltrim($word);
             $length = strlen($word);
 
@@ -125,7 +136,10 @@ class TextService
             }
         }
 
-        return $wordCount > 0 ? $totalCharacters / $wordCount : 0;
+        return [
+            'averageWordLength' => $wordCount > 0 ? $totalCharacters / $wordCount : 0,
+            'characterCount' => $totalCharacters
+        ];
     }
 
     private function getSentences($textString) {
@@ -175,14 +189,103 @@ class TextService
 
     public function countSyllables($text) {
         $syllable = new Syllable('en-us');
-        $syllable->getSource()->setPath(dirname($_SERVER['DOCUMENT_ROOT']) . '/resources/lang/syllables');
-        $syllable->getCache()->setPath(dirname($_SERVER['DOCUMENT_ROOT']) . '/storage/framework/cache');
-        $words = $syllable->countWordsText($text);
+        $syllable->getSource()->setPath(dirname($_SERVER['DOCUMENT_ROOT']) . '/writingbootsapp/resources/lang/syllables');
+        $syllable->getCache()->setPath(dirname($_SERVER['DOCUMENT_ROOT']) . '/writingbootsapp/storage/framework/cache');
         $syllables = $syllable->countSyllablesText($text);
-
+        $polysyllables = $syllable->countPolysyllablesText($text);
         return [
-            'words' => $words,
-            'syllables' => $syllables
+            'syllables' => $syllables,
+            'polysyllables' => $polysyllables
         ];
+    }
+
+    public function getGunningIndex($averageSentenceLength, $polysyllables, $wordCount) {
+        $percentagePolysyllables = 100 * ($polysyllables / $wordCount);
+        $gunning = 0.4 * ($averageSentenceLength + $percentagePolysyllables);
+        return $gunning;
+    }
+
+    public function getFleschScore($wordCount, $sentenceCount, $syllableCount) {
+        $wordsToSentences = 1.015 * ($wordCount / $sentenceCount);
+        $syllablesToWords = 84.6 * ($syllableCount / $wordCount);
+        $flesch = 206.835 - $wordsToSentences - $syllablesToWords;
+
+        $grade = "0";
+
+        if ($flesch >= 90) {
+            $grade = 5;
+        }
+        elseif ($flesch >= 80) {
+            $grade = 6;
+        }
+        elseif ($flesch >= 70) {
+            $grade = 7;
+        }
+        elseif ($flesch >= 65)
+        {
+            $grade = 8;
+        }
+        elseif ($flesch >= 60) {
+            $grade = 9;
+        }
+        elseif ($flesch >= 57) {
+            $grade = 10;
+        }
+        elseif ($flesch >= 54) {
+            $grade = 11;
+        }
+        elseif ($flesch >= 50) {
+            $grade = 12;
+        }
+        elseif ($flesch >= 40) {
+            $grade = 13;
+        }
+        elseif ($flesch >= 30) {
+            $grade = 14;
+        }
+        elseif ($flesch >= 15) {
+            $grade = 15;
+        }
+        else {
+            $grade = 16;
+        }
+        return [
+            'score' => $flesch,
+            'grade' => $grade
+        ];
+    }
+
+    public function getFleschKincaid($wordCount, $sentenceCount, $syllableCount) {
+        $wordsToSentences = 0.39 * ($wordCount / $sentenceCount);
+        $syllablesToWords = 11.8 * ($syllableCount / $wordCount);
+        $fleschKincaid = $wordsToSentences + $syllablesToWords - 15.59;
+
+        return $fleschKincaid;
+    }
+
+    public function getSmog($polysyllables, $sentenceCount) {
+        if ($sentenceCount >= 30) {
+            $squareRoot = sqrt($polysyllables * (30 / $sentenceCount));
+            $smog = 1.043 * $squareRoot + 3.1291;
+        }
+        else {
+            $smog = 0;
+        }
+
+        return $smog;
+    }
+
+    public function getColemanLiau($characterCount, $sentenceCount, $wordCount) {
+        $lettersToWords = 0.0588 * ($characterCount / $wordCount * 100);
+        $sentencesToWords = 0.296 * ($sentenceCount / $wordCount * 100);
+        $colemanLiauGrade = $lettersToWords - $sentencesToWords - 15.8;
+        return $colemanLiauGrade;
+    }
+
+    public function getAri($characterCount, $wordCount, $sentenceCount) {
+        $charactersToWords = 4.71 * ($characterCount / $wordCount);
+        $wordsToSentences = 0.5 * ($wordCount / $sentenceCount);
+        $ari = $charactersToWords + $wordsToSentences - 21.43;
+        return $ari;
     }
 }
