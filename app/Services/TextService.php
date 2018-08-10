@@ -11,7 +11,17 @@ class TextService
     private $words = [];
     private $wordCount = 0;
 
-    private $excluded = ["\t", "\n", "\r", "\r\n", " ", "a", "and", "of", "the", "to", "in", "as", "that", "is", "for", "be", "with", "an", "would", "i", "or", "this", "on", "are", "not", "could", "in", "have", "it", "was", "can", "more", "from", "use", "most", "my", 'his', "you", "he", "they", "were", "her", "He", "had", "s", "she", "at", "The", "I", 'their', "out", "She", "t", "up", "back", "been", "into", "down", "them", "we", "one", "What", "They", "all", "but", "It", "like", "some", "d", "about", "than", "around", "just", "him", "what", "so", "get", "through", "over", "right", "me", "your", "let", "ve", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "do", "always", "before", "see", "made", "no", "know", "go", "there", "other", "got", "then", "return", "In", "This", "well"];
+    private $excluded = ["\t", "\n", "\r", "\r\n", " ", "a", "and", "of","the", "to", "in", "as",
+                        "that", "is", "for", "be", "with", "an", "would", "i", "or", "this", "on",
+                        "are", "not", "could", "in", "have", "it", "was", "can", "more", "from",
+                        "use", "most", "my", "his", "you", "he", "they", "were", "her", "had",
+                        "s", "she", "at", "their", "out", "t", "up", "back", "may", "same", "those",
+                        "been", "into", "down", "them", "we", "one", "what", "all", "but", "might",
+                        "like", "some", "d", "about", "than", "around", "just", "him", "our", 
+                        "what", "so", "get", "through", "over", "right", "me", "your", "let", "ve",
+                        "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+                        "ten", "do", "always", "before", "see", "made", "no", "know", "go",
+                        "there", "other", "got", "then", "return", "well", "which", "by", "will"];
 
     public function __construct()  {
     }
@@ -95,12 +105,16 @@ class TextService
         }
 
         foreach ($words as $word) {
-            if (!in_array($word, $this->excluded) && strlen($word) > 1) {
-                if (array_key_exists($word, $wordMap)) {
-                    $wordMap[$word] += 1;
+            $lowercaseWord = strtolower($word);
+            $isExcluded = in_array($lowercaseWord, $this->excluded);
+            $hasLength = strlen($word) > 1;
+            
+            if (!$isExcluded && $hasLength) {
+                if (array_key_exists($lowercaseWord, $wordMap)) {
+                    $wordMap[$lowercaseWord] += 1;
                 }
                 else {
-                    $wordMap[$word] = 1;
+                    $wordMap[$lowercaseWord] = 1;
                 }
             }
         }
