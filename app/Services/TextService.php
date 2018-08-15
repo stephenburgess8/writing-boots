@@ -50,9 +50,9 @@ class TextService
     ];
 
     protected $pronouns = [
-        "anyone", "he", "her", "herself", "him", "himself", "i", "it", "me", "she",
-        "someone", "something", "them", "they", "us", "we", "what", "who",
-        "whoever", "you"
+        "anyone", "he", "her", "herself", "him", "himself", "i", "it", "itself",
+        "me", "she", "someone", "something", "them", "they", "us", "we", "what", 
+        "who", "whoever", "you"
     ];
 
     protected $quantifiers = [
@@ -63,11 +63,12 @@ class TextService
 
     // Content words
     protected $adverbs = [
-        "again",  "ago", "almost", "already", "always", "away", "by", "certainly",
-        "especially", "even", "ever", "far", "fully", "here", "how", "however",
-        "inside", "just", "maybe", "near", "nearly", "never", "not", "now", "out",
-        "possibly", "quite", "rather",  "really", "right", "so", "somewhat",
-        "still", "then", "there", "too", "up", "very", "well", "whether"
+        "again",  "ago", "almost", "already", "always", "among", "away", "by",
+        "certainly", "especially", "even", "ever", "far", "fully", "here", "how",
+        "however", "inside", "just", "maybe", "near", "nearly", "never", "not",
+        "now", "out", "possibly", "quite", "rather",  "really", "right", "so",
+        "somewhat", "still", "then", "there", "too", "up", "very", "well",
+        "whether"
     ];
 
     protected $adjectives = [
@@ -446,9 +447,15 @@ class TextService
     }
 
     public function countSyllables($text) {
+        $documentRoot = dirname($_SERVER['DOCUMENT_ROOT']);
+
+        if (config('app.env') == 'production') {
+            $documentRoot .= config('app.production_root');
+        }
+        
         $syllable = new Syllable('en-us');
-        $syllable->getSource()->setPath(dirname($_SERVER['DOCUMENT_ROOT']) . '/writingbootsapp/resources/lang/syllables');
-        $syllable->getCache()->setPath(dirname($_SERVER['DOCUMENT_ROOT']) . '/writingbootsapp/storage/framework/cache');
+        $syllable->getSource()->setPath( $documentRoot . '/resources/lang/syllables');
+        $syllable->getCache()->setPath( $documentRoot . '/storage/framework/cache');
         $syllables = $syllable->countSyllablesText($text);
         $polysyllables = $syllable->countPolysyllablesText($text);
         return [

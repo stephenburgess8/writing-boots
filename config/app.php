@@ -28,6 +28,8 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'production_root' => env('PRODUCTION_ROOT', '/writingbootsapp'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
