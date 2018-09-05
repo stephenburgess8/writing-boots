@@ -17,7 +17,7 @@
                             </a>
                         </h3>
                     </div>
-                    <ul class="boots-nav-list">
+{{--                     <ul class="boots-nav-list">
                         @guest
                         <li class="boots-nav-list-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -31,7 +31,7 @@
                                 <a class="boots-nav-link" href="{{ route('logout') }}">{{ __('Logout') }}</a>
                             </li>
                         @endguest
-                    </ul>
+                    </ul> --}}
                 </div>
             </nav>
         </header>

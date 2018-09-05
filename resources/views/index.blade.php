@@ -7,12 +7,178 @@
         <form id="wb-form-main" class="boots-form" method="post">
             {{ csrf_field() }}
             <div class="wb-form-header">
-                <label for="wb-title" class="boots-form-input-label">Title</label>
-                @if (isset($title))
-                    <input name="wb-title" id="wb-title-input" class="boots-input-string" type="text" value="{{$title}}">
-                @else
-                    <input name="wb-title" id="wb-title-input" class="boots-input-string" type="text" placeholder="Title (Optional)">
-                @endif
+                <details class="wb-form-options-details">
+                    <summary>Options</summary>
+                    <h4>Categories included in word frequency analysis</h4>
+                    <fieldset class="wb-form-checkbox-wrapper">
+                        <legend class="wb-form-options-legend">Function words</legend>
+                            <input
+                                id="articles"
+                                name="feature"
+                                type="checkbox"
+                                value="articles"
+                            />
+                            <label for="articles">Articles</label>
+                            <input
+                                id="conjunctions"
+                                name="feature"
+                                type="checkbox"
+                                value="conjunctions"
+                            />
+                            <label for="conjunctions">Conjunctions</label>
+                            <input
+                                id="demonstratives"
+                                name="feature"
+                                type="checkbox"
+                                value="demonstratives"
+                            />
+                            <label for="demonstratives">Demonstratives</label>
+                            <input
+                                id="interjections"
+                                name="feature"
+                                type="checkbox"
+                                value="interjections"
+                            />
+                            <label for="interjections">Interjections</label>
+                            <input
+                                id="interrogatives"
+                                name="feature"
+                                type="checkbox"
+                                value="interrogatives"
+                            />
+                            <label for="interrogatives">Interrogatives</label>
+                            <input
+                                id="modals"
+                                name="feature"
+                                type="checkbox"
+                                value="modals"
+                            />
+                            <label for="modals">Modals</label>
+                            <input
+                                id="possessives"
+                                name="feature"
+                                type="checkbox"
+                                value="possessives"
+                            />
+                            <label for="possessives">Possessives</label>
+                            <input
+                                id="prepositions"
+                                name="feature"
+                                type="checkbox"
+                                value="prepositions"
+                            />
+                            <label for="prepositions">Prepositions</label>
+                            <input
+                                id="pronouns"
+                                name="feature"
+                                type="checkbox"
+                                value="pronouns"
+                            />
+                            <label for="pronouns">Pronouns</label>
+                            <input
+                                id="quantifiers"
+                                name="feature"
+                                type="checkbox"
+                                value="quantifiers"
+                            />
+                            <label for="quantifiers">Quantifiers</label>
+                    </fieldset>
+                    <fieldset class="wb-form-checkbox-wrapper">
+                        <legend class="wb-form-options-legend">Content words</legend>
+                            <input
+                                id="adverbs"
+                                name="feature"
+                                type="checkbox"
+                                value="adverbs"
+                            />
+                            <label for="adverbs">Adverbs</label>
+                            <input
+                                id="adjectives"
+                                name="feature"
+                                type="checkbox"
+                                value="adjectives"
+                            />
+                            <label for="adjectives">Adjectives</label>
+                            <input
+                                checked
+                                id="numbers"
+                                name="feature"
+                                type="checkbox"
+                                value="numbers"
+                            />
+                            <label for="numbers">Numbers</label>
+                            
+                        </fieldset>
+                        <fieldset class="wb-form-checkbox-wrapper">
+                            <legend  class="wb-form-options-legend" class="wb-form-options-legend  class="wb-form-options-legend"">Nouns</legend  class="wb-form-options-legend">
+                            <input
+                                checked
+                                id="abstract-nouns"
+                                name="feature"
+                                type="checkbox"
+                                value="abstract-nouns"
+                            />
+                            <label for="abstract-nouns">Abstract nouns</label>
+                            <input
+                                checked
+                                id="place-object-nouns"
+                                name="feature"
+                                type="checkbox"
+                                value="place-object-nouns"
+                            />
+                            <label for="place-object-nouns">Place/Object nouns</label>
+                            <input
+                                checked
+                                id="people-nouns"
+                                name="feature"
+                                type="checkbox"
+                                value="people-nouns"
+                            />
+                            <label for="people-nouns">People nouns</label>
+                            <input
+                                checked
+                                id="time-nouns"
+                                name="feature"
+                                type="checkbox"
+                                value="time-nouns"
+                            />
+                            <label for="time-nouns">Time nouns</label>
+                            <input
+                                checked
+                                id="body-nouns"
+                                name="feature"
+                                type="checkbox"
+                                value="body-nouns"
+                            />
+                            <label for="body-nouns">Body nouns</label>
+                            
+                        </fieldset>
+                        <fieldset class="wb-form-checkbox-wrapper">
+                            <legend class="wb-form-options-legend">Verbs</legend>
+                            <input
+                                id="most-common-verbs"
+                                name="feature"
+                                type="checkbox"
+                                value="most-common-verbs"
+                            />
+                            <label for="most-common-verbs">Most common verbs</label>
+                            <input
+                                id="common-verbs"
+                                name="feature"
+                                type="checkbox"
+                                value="common-verbs"
+                            />
+                            <label for="common-verbs">Common verbs</label>
+                            <input
+                                checked
+                                id="less-common-verbs"
+                                name="feature"
+                                type="checkbox"
+                                value="less-common-verbs"
+                            />
+                            <label for="less-common-verbs">Less common verbs</label>
+                    </fieldset>
+                </details>
                 <div class="wb-form-submit-container">
                     <input class="boots-button-submit" id="wb-form-main-submit" type="submit" value="Analyze">
                 </div>
