@@ -84,25 +84,39 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-__webpack_require__(1);
-module.exports = __webpack_require__(2);
-
-
-/***/ }),
-/* 1 */
+/***/ "./resources/assets/js/app.js":
+/*!************************************!*\
+  !*** ./resources/assets/js/app.js ***!
+  \************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-console.log('hey');
+eval("console.log('hey');\n\n//# sourceURL=webpack:///./resources/assets/js/app.js?");
 
 /***/ }),
-/* 2 */
+
+/***/ "./resources/assets/sass/app.scss":
+/*!****************************************!*\
+  !*** ./resources/assets/sass/app.scss ***!
+  \****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./resources/assets/sass/app.scss?");
+
+/***/ }),
+
+/***/ 0:
+/*!***************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/app.scss ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("__webpack_require__(/*! ./resources/assets/js/app.js */\"./resources/assets/js/app.js\");\nmodule.exports = __webpack_require__(/*! ./resources/assets/sass/app.scss */\"./resources/assets/sass/app.scss\");\n\n\n//# sourceURL=webpack:///multi_./resources/assets/js/app.js_./resources/assets/sass/app.scss?");
 
 /***/ })
-/******/ ]);
+
+/******/ });

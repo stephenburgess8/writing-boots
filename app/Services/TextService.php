@@ -20,7 +20,7 @@ class TextService
     protected $conjunctions = [
         "after", "although", "and", "as", "because", "before", "but", "for", "if",
         "nor", "once", "or", "since", "so", "than", "though", "till", "until",
-        "when", "whenever", "where", "wherever", "while", "why", "yet"
+        "yet"
     ];
 
     protected $demonstratives = ["that", "these", "this", "those"];
@@ -68,7 +68,7 @@ class TextService
         "however", "inside", "just", "maybe", "near", "nearly", "never", "not",
         "now", "out", "possibly", "quite", "rather",  "really", "right", "so",
         "somewhat", "still", "then", "there", "too", "up", "very", "well",
-        "whether"
+        "whether", "when", "whenever", "where", "wherever", "while", "why"
     ];
 
     protected $adjectives = [
@@ -116,29 +116,109 @@ class TextService
     ];
 
     protected $peopleNouns = [
-        "boy", "boys", "child", "children", "community", "communities",
-        "company", "companies", "daughter", "daughters", "families", "family",
-        "father", "fathers", "friend", "friends", "girl", "girls",
-        "group", "groups", "guy", "guys", "kid", "kids", "man", "member", "members",
-        "men", "mother", "mothers", "mr", "mrs", "ms", "others",
-        "parent", "parents", "party", "person", "people", "sir", "son", "sons",
-        "student", "students", "teacher", "teachers", "team", "teams",
+        "birthday", "birthdays",
+        "boy", "boys",
+        "child", "children",
+        "community", "communities",
+        "company", "companies",
+        "daughter", "daughters",
+        "families", "family",
+        "father", "fathers",
+        "friend", "friends",
+        "girl", "girls",
+        "group", "groups",
+        "guy", "guys",
+        "kid", "kids",
+        "life", "lives",
+        "man", "men",
+        "member", "members",
+        "mother", "mothers",
+        "mr", "mrs", "ms",
+        "name", "names",
+        "other", "others",
+        "parent", "parents",
+        "party", "parties",
+        "person", "people",
+        "sir",
+        "son", "sons",
+        "student", "students",
+        "teacher", "teachers",
+        "team", "teams",
         "woman", "women"
     ];
 
-    protected $placeObjectNouns = [
-        "air", "area", "areas", "bed", "beds", "book", "books", "car", "cars",
-        "cities", "city", "door", "doors", "earth", "end", "ends", "fire",
-        "floor", "floors", "home", "homes", "house", "houses", "line", "lines", 
-        "metal", "money", "object", "objects", "part", "parts", "place", "places",
-        "room", "rooms", "school", "schools", "side", "sides", "state", "states",
-        "stuff", "thing", "things", "water", "world"
+    protected $homeAndBuildingNouns = [
+        "bed", "beds",
+        "door", "doors",
+        "floor", "floors",
+        "home", "homes",
+        "house", "houses",
+        "room", "rooms",
+        "side", "sides"
+    ];
+
+    protected $natureNouns = [
+        "air",
+        "fire", "fires",
+        "world"
+    ];
+
+    protected $writingNouns = [
+        "book", "books",
+        "fire",
+    ];
+
+    protected $artNouns = [
+        "line", "lines", 
+    ]
+
+    protected $machineNouns = [
+        "car", "cars",
+        "line", "lines",
+        "metal",
+        "object", "objects",
+        "part", "parts",
+        "side", "sides",
+        "stuff",
+        "thing", "things",
+    ;
+
+    protected $societyNouns = [
+        "country", "countries",
+        "currency", "currencies",
+        "money",
+        "school", "schools",
+        "state", "states",
+        "world"
+    ];
+
+    protected $scienceNouns = [
+        "metal", "metals",
+        "water", 
+    ]
+         
+    protected $placeNouns = [
+        "area", "areas",
+        "city", "cities",
+        "earth",
+        "beginning", "end",
+        "place", "places",
+        "planet", "planets",
+        "state", "states",
+        "town", "towns"
     ];
 
     protected $timeNouns = [
-        "day", "days", "hour", "hours", "minute", "minutes", "moment", "moments",
-        "month", "months", "morning", "mornings", "night", "nights",
-        "time", "times", "week", "weeks", "year", "years"
+        "day", "days",
+        "hour", "hours",
+        "minute", "minutes",
+        "moment", "moments",
+        "month", "months",
+        "morning", "mornings",
+        "night", "nights",
+        "time", "times",
+        "week", "weeks",
+        "year", "years"
     ];
 
     // Verbs
@@ -179,7 +259,7 @@ class TextService
         "want", "wanting", "wants", "wanted"
     ];
 
-    protected $commonVerbs = [
+    protected $moreCommonVerbs = [
         "allow", "allowing", "allows", "allowed",
         "believe", "believing", "belives", "believed",
         "change", "changing", "changes", "changed",
@@ -215,6 +295,8 @@ class TextService
         "watch", "watching", "watches", "watched",
         "write", "writing", "writes", "wrote", "written"
     ];
+
+    protected $commonVerbs = [];
 
     protected $lessCommonVerbs = [
         "add", "adding", "adds", "added",
@@ -256,6 +338,8 @@ class TextService
         "walk", "walking", "walks", "walked",
         "win", "winning", "wins", "won"
     ];
+
+    protected $leastCommmonVerbs = [];
 
     public function __construct()  {
     }
