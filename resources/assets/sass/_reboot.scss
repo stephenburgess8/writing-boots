@@ -124,13 +124,13 @@ sup {
 }
 
 a {
-  color: theme-color("primary");
+  color: #0056b3;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 a:hover {
-  color: #0056b3;
+  color: theme-color("primary");
   text-decoration: underline;
 }
 

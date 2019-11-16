@@ -1,6 +1,8 @@
 .boots-card {
 	border: $border;
 	border-radius: 4px 4px 0 0;
+	box-shadow: 0 1px 2px 2px $link-blue-shadow;
+	margin-bottom: 16px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
@@ -17,4 +19,21 @@
 	padding: 16px 16px 32px;
 	position: relative;
 	text-align: center;
+}
+
+.boots-mini {
+	border: $border;
+	border-radius: 4px 4px 0 0;
+	float: left;
+	max-width: 49%;
+	padding: 16px 8px;
+	margin-left: 1%;
+
+	&:first-child {
+		margin-left: 0;
+	}
+}
+
+.clear {
+	clear: both;
 }

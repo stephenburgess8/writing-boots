@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'development'),
 
     'production_root' => env('PRODUCTION_ROOT', '/writingbootsapp'),
 
@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://writingboots.com'),
+    'url' => env('APP_URL', 'homestead.test'),
 
     /*
     |--------------------------------------------------------------------------

@@ -13,7 +13,7 @@
 Route::post('/' ,'TextController@analyze');
 
 Route::get('/', function () {
-    return view('index');
+    return view('boots');
 });
 
 Auth::routes();

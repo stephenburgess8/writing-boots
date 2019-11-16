@@ -12,23 +12,28 @@
     display: block;
 }
 
-.boots-logo-container {
+.boots-logo-container,
+.wdi-logo-container {
     float: left;
     font-style: normal;
 }
 
-.boots-header-logotype {
+.boots-header-logotype,
+.boots-wdi-logotype {
     color: $black;
     font-weight: 300;
 }
 
 .boots-logo-link:link,
-.boots-logo-link:visited {
+.wdi-logo-link:link,
+.boots-logo-link:visited,
+.wdi-logo-link:visited {
     color: $black;
     font-weight: 300;
 }
 
-.boots-logo-link:hover {
+.boots-logo-link:hover,
+.wdi-logo-link:hover {
     color: #000;
     cursor: pointer;
     text-decoration: none;
@@ -38,7 +43,8 @@
     color: $dark-blue;
 }
 
-.boots-header-logotype .boots-logo-link:link, {
+.boots-header-logotype .boots-logo-link:link,
+.wdi-header-logotype .wdi-logo-link:link {
     color: $black;
 }
 
@@ -55,4 +61,8 @@
 
 .boots-nav-list-item::last-child {
     margin-right: 0;
+}
+
+.wdi-menu-item {
+    display: inline-block;
 }

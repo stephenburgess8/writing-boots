@@ -1,6 +1,6 @@
+@import "variables";
 @import "reboot";
 @import "fonts";
-@import "variables";
 
 .boots-content,
 .boots-header-container {
@@ -12,18 +12,15 @@
     margin-bottom: 24px;
 }
 
+@import "layout";
 @import "nav";
+@import "footer";
 @import "forms";
 @import "card";
 
-.boots-content-wrapper {
+.boots-content-wrapper,
+.wdi-content-wrapper {
     margin: 8px;
-}
-
-.boots-content-wrapper:last-child::after {
-    content: '';
-    display: block;
-    clear: both;
 }
 
 .wb-table-wrapper {
@@ -57,12 +54,15 @@
 }
 
 @media (min-width: 492px) {
+    
+
     .boots-header-container {
         padding-left: 16px;
         padding-right: 16px;
     }
 
-    .boots-content-wrapper {
+    .boots-content-wrapper,
+    .wdi-footer-content {
         margin: 16px;
     }
 
@@ -70,17 +70,9 @@
         display: inline;
     }
 
-    .wb-form-submit-container {
-        padding-left: 8px;
-    }
-
     .wb-form-header-instructions {
         float: right;
         padding-top: 8px;
-    }
-
-    .wb-form-submit-container {
-        width: auto;
     }
 
     .boots-card {
@@ -102,7 +94,8 @@
         padding-right: 24px;
     }
 
-    .boots-content-wrapper {
+    .boots-content-wrapper,
+    .wdi-footer-content {
         margin: 16px 24px;
     }
 
