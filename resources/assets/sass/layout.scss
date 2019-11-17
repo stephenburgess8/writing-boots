@@ -38,6 +38,10 @@
     header {
         width: 100%;
     }
+
+    .wdi-header-logotype {
+        margin: 16px 24px;
+    }
 }
 
 .wdi-header-container {
@@ -57,7 +61,6 @@
 
     background-color: $color-body;
     box-shadow: $box-shadow;
-    padding: 8px 24px 4px 16px;
 }
 
 .wdi-logo-container {
@@ -195,19 +198,33 @@
     align-self: auto;
 }
 
+.wdi-panel-header {
+    color: #5A5D5E;
+}
+
+.wdi-card-content ul {
+    padding-left: 0;
+}
+
+.wdi-panel-list-item {
+    list-style: none;
+    margin-bottom: 8px;
+    margin-left: 0px;
+}
+
 .wdi-panel-action {
     border: $border;
     display: block;
     margin-top: 8px;
     text-align: center;
-        transition: all 250ms ease-in-out;
+    transition: border-color 250ms ease-in-out;
 
     &:hover,
     &:active,
     &:focus {
         background-color: $color-body;
         border-color: $link-blue;
-        transition: all 250ms ease-in-out;
+        transition: border-color 250ms ease-in-out;
     }
 }
 
@@ -217,12 +234,10 @@
     padding-bottom: 16px;
     padding-top: 16px;
     width: 100%;
-    transition: all 250ms ease-in-out;
 
     &:hover,
     &:active,
     &:focus {
         text-decoration: none;
-        transition: all 250ms ease-in-out;
     }
 }

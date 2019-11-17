@@ -7,6 +7,11 @@
 	margin-right: auto;
 	position: relative;
 }
+.wdi-card {
+	display: inline-block;
+	vertical-align: top;
+	width: auto;
+}
 
 .boots-card-header {
 	background-color: $gutter-color;
@@ -16,18 +21,20 @@
 }
 
 .boots-card-body {
-	padding: 16px 16px 32px;
+	padding: 16px 16px 24px;
 	position: relative;
-	text-align: center;
 }
 
 .boots-mini {
 	border: $border;
 	border-radius: 4px 4px 0 0;
-	float: left;
+	display: inline-block;
 	max-width: 49%;
-	padding: 16px 8px;
-	margin-left: 1%;
+	padding: 16px 8px 0;
+
+	p {
+		margin-bottom: 10px;
+	}
 
 	&:first-child {
 		margin-left: 0;
@@ -36,4 +43,13 @@
 
 .clear {
 	clear: both;
+}
+
+.wdi-card-content {
+	display: inline-block;
+}
+
+.wdi-card-content strong {
+	font-size: .8em;
+	font-weight: 600;
 }

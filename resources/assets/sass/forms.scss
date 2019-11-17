@@ -56,17 +56,17 @@
 }
 
 .boots-button-submit {
-	background-color: $gray-background;
-	border: $border;
+	background-color: rgba(0,86,179,0.04);
+	border: 1px solid $link-blue;
     cursor: pointer;
     font-size: 1.2em;
-    padding-bottom: 4px;
-    padding-top: 4px;
+    padding-bottom: 8px;
+    padding-top: 8px;
     transition: background-color 250ms ease-out;
     width: 100%;
 
     &:hover {
-        background-color: $gray-lighter;
+        background-color: rgba(0,86,179,0.08);
         transition: background-color 250ms ease-out;
     }
 }
