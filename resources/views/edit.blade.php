@@ -36,17 +36,17 @@
                                 <li class="wdi-panel-list-item">
                                     <label for="title" class="wdi-form-input-label">Title</label>
                                     @if (isset($title))
-                                        <input name="title" id="wb-title-input" class="wdi-input-string" type="text" value="{{ $title }}">
+                                        <input name="title" id="wb-title-input" class="boots-input-string" type="text" value="{{ $title }}">
                                     @else
-                                        <input name="title" id="wb-title-input" class="wdi-input-string" type="text" placeholder="Title">
+                                        <input name="title" id="wb-title-input" class="boots-input-string" type="text" placeholder="Title">
                                     @endif 
                                 </li>
                                 <li class="wdi-panel-list-item">
                                     <label for="title" class="wdi-form-input-label">Description</label>
                                     @if (isset($content))
-                                        <textarea id="wdi-comment-input" class="wdi-input-textarea" name="comment">{{ $content }}</textarea>
+                                        <textarea id="wdi-comment-input" class="boots-input-textarea" name="comment">{{ $content }}</textarea>
                                     @else
-                                        <textarea id="wdi-comment-input" class="wdi-input-textarea" name="comment">TOut of respect for human interaction? i don't know. trying to imagine an existence where i do not use any google service at all, including replacements like duckduckgo. not to avoid the company itself, but to avoid 'computerization' as a human brain.</textarea>
+                                        <textarea id="wdi-comment-input" class="boots-input-textarea" name="comment">TOut of respect for human interaction? i don't know. trying to imagine an existence where i do not use any google service at all, including replacements like duckduckgo. not to avoid the company itself, but to avoid 'computerization' as a human brain.</textarea>
                                     @endif
                                 </li>
                                 <li class="wdi-panel-list-item"><strong>Tags</strong> <a href="/tags/test">Test</a>, <a href="/tags/journal">Journal</a></li>

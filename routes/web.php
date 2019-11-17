@@ -21,4 +21,7 @@ Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/home', 'TextController@analyze');
+Route::post('/home', 'NoteController@create');
+
+Route::resource('Notes', 'NoteController');
+Route::resource('People', 'PeopleController');

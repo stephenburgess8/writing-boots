@@ -29,6 +29,14 @@
     width: 14em;
 }
 
+.wdi-input-string {
+    border: $border;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    padding: 4px 8px;
+    width: 100%;
+}
+
 .boots-input-textarea-container {
     display: inline-block;
 }
@@ -45,6 +53,12 @@
     max-width: 80em;
     padding: 48px 64px 32px;
     width: 600px;
+}
+
+.wdi-input-textarea {
+    display: block;
+    margin-bottom: 8px;
+    width: 100%;
 }
 
 .boots-invalid-feedback {
