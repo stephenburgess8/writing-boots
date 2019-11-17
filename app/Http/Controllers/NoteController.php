@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Note;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Webpatser\Uuid\Uuid;
+
+use App\Note;
 use App\Repositories\NoteRepository;
 
 class NoteController extends Controller
@@ -52,19 +55,29 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-       // $this->validate($request, [
+        // $name = $request->name;
+        // $this->validate($request, [
        //     'body' => 'required|max:500'
        // ]);
+        $current_time = Carbon::now('UTC'); 
 
-        $input = $request->all();
-        // $name = $request->name;
-        return $this->notes->create(
-            $request->only(
-                $this->notes->getModel()->fillable
-            )
+        $input = $request->only(
+            $this->notes->getModel()->fillable
         );
+        $current_time->setToStringFormat('siH-dmy');
+        $input['uid'] = $this->randomLetter() . $current_time->__toString();
+        $input['discovered_at'] = $current_time->timestamp;
+        // dd($input);
+        $note = $this->notes->create($input);
+        // dd($note);
+        return view('edit', $note);
+    }
 
-        return redirect('edit')->withInput();
+    protected function randomLetter()
+    {
+        $int = rand(0,51);
+        $a_z = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        return $a_z[$int];
     }
 
     /**

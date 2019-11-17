@@ -1,5 +1,5 @@
 {
-    "name": "writingboots",
+    "name": "prothi-writingboots",
     "description": "Tools to analyze the readability of your writing and share it with others.",
     "keywords": ["writing", "readbility", "text"],
     "license": "ISC",
@@ -15,6 +15,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
+        "nesbot/carbon": "1.25.3",
         "vanderlee/syllable": "master",
         "webpatser/laravel-uuid": "^3.0"
     },

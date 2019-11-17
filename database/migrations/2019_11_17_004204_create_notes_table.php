@@ -14,21 +14,20 @@ class CreateNotesTable extends Migration
     public function up()
     {
         Schema::create('notes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->uuid('uuid');
-            $table->string('uid');
+            $table->uuid('id')->primary();
+            $table->string('uid')->nullable();
 
-            $table->integer('user')->index('users');
+            // $table->integer('user')->index('users');
 
             $table->boolean('published')->default(false);
             $table->boolean('composted')->default(false);
             $table->boolean('positive')->default(true);
             $table->boolean('sensitive')->default(false);
 
-            $table->jsonb('meta');
-            $table->jsonb('permissioning');
-            $table->jsonb('languages');
-            $table->jsonb('tags');
+            $table->jsonb('meta')->nullable();
+            $table->jsonb('permissioning')->nullable();
+            $table->jsonb('languages')->nullable();
+            $table->jsonb('tags')->nullable();
 
             $table->longText('content')->nullable();
 
@@ -48,16 +47,15 @@ class CreateNotesTable extends Migration
 
             $table->string('location')->nullable();
             $table->ipAddress('ip_address')->nullable();
-            $table->decimal('latitude', 10, 8);
-            $table->decimal('longitude', 11, 8);
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
 
             $table->dateTimeTz('created_at')->useCurrent();
-            $table->dateTimeTz('discovered_at')->useCurrent();
             $table->dateTimeTz('updated_at')->useCurrent();
-
-            $table->dateTimeTz('compost_at')->nullable();
-            $table->dateTimeTz('expire_at')->nullable();
-            $table->dateTimeTz('start_at')->nullable();
+            $table->unsignedBigInteger('discovered_at')->nullable();
+            $table->unsignedBigInteger('compost_at')->nullable();
+            $table->unsignedBigInteger('expire_at')->nullable();
+            $table->unsignedBigInteger('start_at')->nullable();
         });
     }
 
