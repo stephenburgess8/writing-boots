@@ -44,7 +44,8 @@ class NoteController extends Controller
      */
     public function create()
     {
-        return view('edit');
+        dd('fuckyou');
+        return view('notes.create');
     }
 
     /**
@@ -70,7 +71,7 @@ class NoteController extends Controller
         // dd($input);
         $note = $this->notes->create($input);
         // dd($note);
-        return view('edit', $note);
+        return view('notes.edit', $note);
     }
 
     protected function randomLetter()
@@ -88,7 +89,7 @@ class NoteController extends Controller
      */
    public function show($id)
    {
-       return view('note', $this->notes->show($id));
+       return view('notes.show', $this->notes->show($id));
    }
 
     /**
